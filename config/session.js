@@ -9,7 +9,7 @@
  * For more information on configuring the session, check out:
  * http://sailsjs.org/#documentation
  */
-const local = require('./local.js');
+var local = require('./local.js');
 
 module.exports.session = { 
 	secret: local.secret,
