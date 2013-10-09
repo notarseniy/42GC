@@ -1,0 +1,23 @@
+{
+	"name": "42gc",
+	"private": true,
+	"version": "0.0.0",
+	"description": "GreenCubes short link service",
+	"dependencies": {
+		"sails": "0.9.4",
+		"grunt": "0.4.1",
+		"sails-disk": "~0.9.0",
+		"sails-mysql": "~0.9.0",
+		"ejs": "0.8.4",
+		"optimist": "0.3.4",
+		"generate-key": "0.0.6"
+	},
+	"scripts": {
+		"start": "forever start app.js -l logs/app.log",
+		"debug": "node debug app.js"
+	},
+	"main": "app.js",
+	"repository": "git@github.com:Kern0/42GC.git",
+	"author": "Kern0",
+	"license": "GNU GPL version 2"
+}

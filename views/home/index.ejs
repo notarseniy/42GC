@@ -1,0 +1,32 @@
+<script>$('.ui.form')
+  .form({
+    firstName: {
+      identifier  : 'url',
+      rules: [
+        {
+          type   : 'empty',
+          prompt : 'Таки введите какой нибудь URL'
+        },
+        {
+          type: 'not[url]',
+          prompt: 'Я только прошу тебя ввести правильный URL'
+        }
+      ]
+    }
+  })
+;</script>
+
+<h1>42GC<br>
+Сокращалка ссылок для GreenCubes</h1>
+<form action="/shorten" method="post">
+	<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+	<div class="ui form segment" style="display: inline-block !important">
+		<div class="field">
+			<div class="ui left labeled icon input">
+				<input placeholder="Ссылку для сокращения" type="url" name="url">
+				<i class="url icon"></i>
+			</div>
+		</div>
+		<button type="submit" class="ui blue submit button">Сократить</button>
+	</div>
+</form>

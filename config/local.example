@@ -1,0 +1,28 @@
+// local.js example
+
+module.exports = {
+	appName: "42GC",
+
+	port: process.env.PORT || 1337,
+
+	// The runtime "environment" of your app is either 'development' or 'production'.
+	environment: process.env.NODE_ENV || 'production',
+
+	session: 'somethinglongandRANDOM', //CHANGE THIS
+
+	db: {
+		host: 'localhost',
+		user: 'YOUR_MYSQL_USER',
+		password: 'YOUR_MYSQL_PASSWORD', 
+		database: 'YOUR_MYSQL_DB'
+	},
+
+	redis: {
+		host: 'localhost',
+		port: 6379,
+		ttl: 0,
+		db: 0, //change this if other db
+		pass:'<redis auth password>',
+		prefix: 'sess:'
+	}
+};
