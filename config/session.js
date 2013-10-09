@@ -12,7 +12,7 @@
 const local = require('./local.js');
 
 module.exports.session = { 
-	secret: local.secret
+	secret: local.secret,
 
 
 	adapter: 'redis',
