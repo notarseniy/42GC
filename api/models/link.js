@@ -8,17 +8,22 @@
 
 module.exports = {
 
-	attributes: {
-		// 'http://greencubes.org'
-		originalURL: {
-			type: 'string',
-			required: true
-		},
-		// 'vFDh42'
-		shortURL: {
-			type: 'string',
-			required: true
-		}
-	}
+  attributes: {
+    // 'http://greencubes.org'
+    originalURL: {
+      type: 'string',
+      required: true
+    },
+    // 'vFDh42'
+    shortURL: {
+      type: 'string',
+      required: true
+    },
+    //'42'
+    visitors: {
+      type: 'integer',
+      required: true
+    }
+  }
 
 };

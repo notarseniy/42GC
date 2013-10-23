@@ -1,6 +1,6 @@
   <h1>42GC<br>
-  <%= i18n('Получайте вашу ссылочку!') %></h1>
+  <%= i18n('Статистика по') %> <%= shortURL%></h1>
   <h3><%= i18n('Оригинальный URL') %> — <a href="<%= originalURL %>"><%= originalURL %></a></h3>
   <h3><%= i18n('Сокращённый') %> — <a href="http://42gc.ru/<%= shortURL %>"><%= shortURL %></a></h3>
-  <h3><%= i18n('Информация о ссылке') %> — <a href="http://42gc.ru/i<%= shortURL %>">/i/<%= shortURL %></a></h3>
+  <h3><%= i18n('Посещений') %> — <%= visitors %></h3>
   <a href="/" class="ui green button"><%= i18n('Ещё по одной?') %></a>

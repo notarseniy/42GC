@@ -1,32 +1,55 @@
-<script>$('.ui.form')
+<script>$(document).ready(function() {$('.ui.form')
   .form({
-    firstName: {
+    url: {
       identifier  : 'url',
       rules: [
         {
           type   : 'empty',
-          prompt : 'Таки введите какой нибудь URL'
+          prompt : '<%= i18n('Введите какой нибудь URL') %>'
         },
         {
           type: 'not[url]',
-          prompt: 'Я только прошу тебя ввести правильный URL'
+          prompt: '<%= i18n('Я только прошу тебя ввести правильный URL') %>'
+        },
+        {
+          type: 'contains ['http://42gc.ru']',
+          promt: '<%= i18n('Прости, но использовать этот адрес нельзя') %>'
         }
       ]
     }
   })
-;</script>
+;
+$('.ui.dropdown')
+    .form(validationRules, {
+      inline : true,
+      on: 'blur'
+    })
+;});</script>
 
 <h1>42GC<br>
-Сокращалка ссылок для GreenCubes</h1>
+<%= i18n('Простая сокращалка ссылок') %></h1>
 <form action="/shorten" method="post">
-	<input type="hidden" name="_csrf" value="<%= _csrf %>" />
-	<div class="ui form segment" style="display: inline-block !important">
-		<div class="field">
-			<div class="ui left labeled icon input">
-				<input placeholder="Ссылку для сокращения" type="url" name="url">
-				<i class="url icon"></i>
-			</div>
-		</div>
-		<button type="submit" class="ui blue submit button">Сократить</button>
-	</div>
+  <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+  <div class="ui form" style="display: inline-block !important">
+    <div class="field">
+      <label style="text-align: left"><%= i18n('Ссылка для сокращения') %></label>
+      <div class="ui left labeled icon input">
+        <input placeholder="http://greencubes.org" type="text" name="url">
+        <i class="url icon"></i>
+      </div>
+    </div>
+    <div class="field">
+      <label style="text-align: left"><%= i18n('Имя новой ссылки') %><i>(<%= i18n('необязательно)') %></i></label>
+      <div class="ui left labeled icon input">
+        <input placeholder="gcsite" type="text" name="name">
+        <i class="url icon"></i>
+      </div>
+    </div>
+    <button type="submit" class="ui blue submit button"><%= i18n('Сократить') %></button>
+  </div>
 </form>
+<% if (typeof message !== 'undefined' && message.length > 0) { %>
+  <div class="ui error message gc-loginerr">
+    <div class="header"><%= message %></div>
+  </div>
+<% } %>

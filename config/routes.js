@@ -10,17 +10,13 @@
 
 module.exports.routes = {
 
-	'/': {
-		view: 'home/index'
-	},
-
-	'/shorten': {
-		controller: 'home',
-		action: 'shorten'
-	},
-
-	'/:shortURL': {
-		controller: 'home',
-		action: 'shorted'
-	}
+  '/': {
+    view: 'home/index'
+  },
+  'post /shorten': 'home.shorten',
+  '/:shortURL': 'home.shorted',
+  '/i/:shortURL': 'home.info',
+  '/info/:shortURL': 'home.info'/*,
+  '/ru': 'lang.ru',
+  '/en': 'lang.en'*/
 };

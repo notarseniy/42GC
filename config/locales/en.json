@@ -1,3 +1,13 @@
 {
-  "Hello": "Sup"
+  "Простая сокращалка ссылок": "Simple URL shorter",
+  "Ссылка для сокращения": "URL for shorting",
+  "Имя новой ссылки": "Short link name",
+  "необязательно": "optional",
+  "Сократить": "Shorten",
+  "Статистика по": "Statistics for",
+  "Оригинальный URL": "Original URL",
+  "Сокращённый": "Short URL",
+  "Посещений": "Visitors",
+  "Информация о ссылке": "Info about link",
+  "Увы, но этот короткий адрес уже занят": "Sorry, but this short URL is exists"
 }
