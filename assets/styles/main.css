@@ -25,10 +25,15 @@ body {
 }
 
 .center {
-  margin: 0 auto;
-  text-align: center;
+  margin: 0 auto !important;
+  text-align: center !important;
   display: block !important;
 }
+
+.loginerr {
+  margin-right: 30% !important;
+  margin-left: 30% !important;
+} 
 
 .ui.table tr.gc-accepted td, .ui.table td.gc-accepted {
   background-color: rgb(191,221,180) !important;

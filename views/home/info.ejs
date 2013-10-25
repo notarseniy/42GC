@@ -1,6 +1,22 @@
   <h1>42GC<br>
   <%= i18n('Статистика по') %> <%= shortURL%></h1>
-  <h3><%= i18n('Оригинальный URL') %> — <a href="<%= originalURL %>"><%= originalURL %></a></h3>
-  <h3><%= i18n('Сокращённый') %> — <a href="http://42gc.ru/<%= shortURL %>"><%= shortURL %></a></h3>
-  <h3><%= i18n('Посещений') %> — <%= visitors %></h3>
-  <a href="/" class="ui green button"><%= i18n('Ещё по одной?') %></a>
+  <div class="ui grid center">
+    <div class="three wide column" style="text-align:right !important"><%= __('Оригинальный URL') %></div>
+    <div class="three column">—</div>
+    <div class="three wide column" style="text-align: left !important"><a href="<%= originalURL %>" class="link"><%= originalURL %></a></div>
+  </div>
+  
+  <div class="ui grid center">
+    <div class="three wide column" style="text-align:right !important"><%= __('Сокращённый URL') %></div>
+    <div class="three column">—</div>
+    <div class="three wide column" style="text-align: left !important"><a href="http://42gc.ru/<%= shortURL %>" class="link"><%= shortURL %></a></div>
+  </div>
+  
+  <div class="ui grid center">
+    <div class="three wide column" style="text-align:right !important"><%= __('Посещений') %></div>
+    <div class="three column">—</div>
+    <div class="three wide column" style="text-align: left !important"><%= visitors %></div>
+  </div>
+
+  <br>
+  <a href="/" class="ui green small button"><%= i18n('Ещё по одной?') %></a>

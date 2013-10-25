@@ -16,7 +16,8 @@ module.exports.routes = {
   'post /shorten': 'home.shorten',
   '/:shortURL': 'home.shorted',
   '/i/:shortURL': 'home.info',
-  '/info/:shortURL': 'home.info'/*,
+  '/info/:shortURL': 'home.info',
+  '/d/:delink': 'home.delink'/*,
   '/ru': 'lang.ru',
   '/en': 'lang.en'*/
 };
