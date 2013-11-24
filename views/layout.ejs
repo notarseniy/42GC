@@ -1,27 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><%- title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:title" content="<%- title %>" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/logo.png">
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link href="/styles/sem.css" type="text/css" rel="stylesheet" />
-    <link href="/styles/main.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/sem.js"></script>
-    <script type="text/javascript" src="/js/angular.js"></script>
-  </head>
-  <body>
-  <div class="container center">
-  <%- body %>
-  <div class="ui horizontal icon divider">
-    <i class="circular heart icon"></i>
-  </div>
-  <!--<p class="pull-left"><a href="/ru" class="link">Русский</a> &#149; <a href="/en" class="link">English</a></p>-->
-  <p class="pull-right"><a href="//github.com/Kern0/42GC" class="link">Github</a> &#149; <a href="//kern0.ru" class="link">Kern0</a> &#149; <a href="//greencubes.org" class="link">GreenCubes</a></p>
-  </div>
-  </body>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title><%- title %></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<meta property="og:title" content="<%- title %>" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="/images/logo.png">
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link href="/styles/sem.css" type="text/css" rel="stylesheet" />
+		<link href="/styles/main.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript" src="/js/sem.js"></script>
+		<script type="text/javascript" src="/js/angular.js"></script>
+	</head>
+	<body>
+		<!--<p class="pull-left"><a href="/ru" class="link">Русский</a> &#149; <a href="/en" class="link">English</a></p>-->
+		<div class="wrapper">
+			<div class="content">
+			<%- body %>
+			</div>
+			<div class="push"></div>
+		</div>
+		<div class="footer">
+			<ul class="links right">
+				<li><a href="//github.com/Kern0/42GC" class="link">Github</a></li>
+				<li>&bull; <a class="link" href="//kern0.ru">Kern0</a></li>
+			</ul>
+		</div>
+	</body>
 </html>
