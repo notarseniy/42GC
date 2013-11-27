@@ -9,7 +9,7 @@ body {
 }
 
 html, body {
-	height: 99%;
+	height: 100%;
 }
 
 a {
@@ -17,8 +17,15 @@ a {
   text-decoration: none;
 }
 
+.pixel {
+	height: 8px;
+	background-color: rgb(91, 171, 167);
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+}
 .wrapper {
-	border-top: 8px solid rgb(91, 171, 167);
 	min-height: 100%;
 	height: auto !important;
 	margin: 0px auto -61px;
@@ -28,7 +35,7 @@ a {
 }
 
 .push, .footer {
-	height: 61px;
+	height: 60px;
 }
 
 .footer {

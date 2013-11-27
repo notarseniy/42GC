@@ -7,11 +7,40 @@
 var rand = require('generate-key');
 var crypto = require('crypto');
 
+function getStats(cb) {
+	async.waterfall([
+	function getCount(callback) {
+		link.query('select count(1) from link',
+			function(err, result) {
+				if (err) return callback(err);
+				
+				callback(null, result[0]['count(1)']);
+			});
+	},
+	function getVisitors(count, callback) {
+		link.query('SELECT SUM(visitors) FROM link',
+			function(err, result) {
+				if (err) return callback(err);
+				
+				callback(null, {links: count, visitors: result[0]['SUM(visitors)']});
+			});
+	}],
+	function (err, result) {
+		if (err) return cb(err);
+		
+		cb(null, result);
+	});
+}
+
 module.exports = {
 
   index: function(req,res){
-    res.etagify();
-    res.view();
+   res.etagify();
+   getStats(function(err, result) {
+		if (err) throw err;
+		
+		res.view({stats: result});
+	});
   },
 
   shorten: function shorten(req,res){
@@ -29,6 +58,8 @@ module.exports = {
     link.findOne({
       shortURL: shorten.sUrl
     }).done(function(err, link) {
+		if (err) throw err;
+		
       if (link) {
         return res.view('home/index',{message: 'Увы, но этот короткий адрес уже занят'});
       }
@@ -42,12 +73,9 @@ module.exports = {
           visitors: '0',
           delink: shorten.delink
       }).done(function(err, link) {
-        if (err) {
-          return new Error(err);
-        }
-        else {
-          res.view({originalURL: shorten.url, shortURL: shorten.sUrl, delink: shorten.delink});
-        }
+			if (err) throw err;
+        
+			res.view({originalURL: shorten.url, shortURL: shorten.sUrl, delink: shorten.delink});
       });
   },
 
@@ -92,18 +120,16 @@ module.exports = {
       delink: req.param('delink')
     }).done(function(err, link) {
       if (!_.isObject(link)) return res.redirect('/');
-      if (err) {
-        return new Error(err);
-      } else {
-        if (link) {
-          link.destroy(function(err) {
-            throw new Error(err);
-          });
-          res.view('home/index',{message: 'Ссылка успешно удалена'});
-        } else {
-          res.redirect('/');
-        }
-      }
+      if (err) throw err;
+      
+		if (link) {
+			link.destroy(function(err) {
+				throw new Error(err);
+			});
+			res.view('home/index',{message: 'Ссылка успешно удалена'});
+		} else {
+			res.redirect('/');
+		}
     });
   }
 };

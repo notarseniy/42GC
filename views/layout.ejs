@@ -17,12 +17,19 @@
 	<body>
 		<!--<p class="pull-left"><a href="/ru" class="link">Русский</a> &#149; <a href="/en" class="link">English</a></p>-->
 		<div class="wrapper">
+			<div class="pixel"></div>
 			<div class="content">
 			<%- body %>
 			</div>
 			<div class="push"></div>
 		</div>
 		<div class="footer">
+		<% isStats = typeof(stats) %>
+		<% if (isStats !== 'undefined') { %>
+			<ul class="links">
+				<li>У нас уже <%= stats.links %> ссылок и <%= stats.visitors %> <span title="*по всем ссылкам">переходов по ним</span>!</li>
+			</ul>
+		<% } %>
 			<ul class="links right">
 				<li><a href="//github.com/Kern0/42GC" class="link">Github</a></li>
 				<li>&bull; <a class="link" href="//kern0.ru">Kern0</a></li>
