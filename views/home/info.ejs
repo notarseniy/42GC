@@ -3,7 +3,11 @@
   <div class="ui grid center">
     <div class="three wide column" style="text-align:right !important"><%= __('Оригинальный URL') %></div>
     <div class="three column mdash">—</div>
-    <div class="three wide column" style="text-align: left !important"><a href="<%= originalURL %>" class="link"><%= originalURL %></a></div>
+    <div class="three wide column" style="text-align: left !important">
+      <div class="ui input">
+         <input class="origurl" value="<%= originalURL %>" type="text">
+      </div>
+   </div>
   </div>
 
   <div class="ui grid center">
