@@ -13,6 +13,7 @@ module.exports.routes = {
    '/favicon.ico': 'home.favicon',
 
    '/': 'home.index',
+   '/about': 'home.about',
    'post /shorten': 'home.shorten',
    '/:shortURL': 'home.shorted',
    '/i/:shortURL': 'home.info',

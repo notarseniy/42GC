@@ -147,5 +147,10 @@ module.exports = {
 
    robots: function(req,res) {
       res.sendfile('assets/robots.txt');
+   },
+
+   about: function(req,res) {
+      res.etagify();
+      res.view('home/about');
    }
 };

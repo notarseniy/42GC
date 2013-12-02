@@ -11,7 +11,7 @@ html, body {
 }
 
 a {
-  color: #ffffff;
+  color: #ebebeb;
   text-decoration: none;
 }
 
@@ -88,7 +88,7 @@ a.item, span.item {
 }
 
 .content {
-	padding-top: 10em;
+   padding: 10em 5em 0em;
 }
 
 .ui.form .field > label {
