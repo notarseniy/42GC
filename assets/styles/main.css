@@ -1,5 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700&subset=latin,cyrillic);
-
 body {
   font-family: "PT Sans",Helvetica,Arial,sans-serif;
   color: #ffffff;
@@ -17,6 +15,29 @@ a {
   text-decoration: none;
 }
 
+.menubutton {
+   cursor: pointer;
+   background: url(/images/logo.png) repeat scroll 0% 0% #222224;
+   position: fixed;
+   left: 20px;
+   bottom: 20px;
+   width: 32px;
+   height: 32px;
+}
+
+.ui.top.right.popup {
+    margin-left: -2.5em !important;
+}
+
+.ui.popup .menubutton {
+   border: 0px solid transparent;
+}
+
+a.item, span.item {
+   color: #ffffff !important;
+   font-weight: bold;
+}
+
 .pixel {
 	height: 8px;
 	background-color: rgb(91, 171, 167);
@@ -29,8 +50,6 @@ a {
 	min-height: 100%;
 	height: auto !important;
 	margin: 0px auto -61px;
-	padding-right: 20%;
-	padding-left: 20%;
 	text-align: center;
 }
 
@@ -69,7 +88,7 @@ a {
 }
 
 .content {
-	padding-top: 20%;
+	padding-top: 10em;
 }
 
 .ui.form .field > label {
@@ -90,4 +109,19 @@ a {
   margin: 0 auto !important;
   text-align: center !important;
   display: block !important;
+}
+
+input.origurl {
+   border: 0px none !important;
+   padding: 0px !important;
+   background-color: transparent !important;
+   color: rgb(255, 255, 255) !important;
+   font-weight: bold;
+   font-size: 1rem !important;
+   width: 20em !important;
+}
+
+.three.column.mdash {
+   padding: 0px;
+   width: 10px;
 }

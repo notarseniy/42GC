@@ -1,0 +1,32 @@
+<script>
+$(document).ready(function(){
+   $( "#no" ).click(function() {
+      window.location.replace("http://42gc.ru");
+   });
+   $( "#yes" ).click(function() {
+        $.ajax({
+         type: "POST",
+         url: '/d/<%= delink %>',
+         data: $('#form').serialize(),
+         success: function(data) {
+            console.log(data);
+            if (data.code === 204) {
+               $('#content').html('<h1>Ссылка успешно удалена!</h1><a href="/" class="ui green small button">На главную</a>').fadeIn(300);
+            }
+         }
+      });
+   });
+});
+</script>
+   <h1>42GC<br>
+   Удалить ссылку /<%= shortURL %>?</h1>
+   <div id="content">
+      <div class="ui buttons">
+         <div class="ui red small button" id="no"><%= i18n('Нет, вернёмся на главную') %></div>
+         <div class="ui green small button" id="yes"><%= i18n('Да, точно') %></div>
+      </div>
+      <form id="form" type="post" action="">
+         <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+         <input type="hidden" name="confirm" value="yeas" />
+      </form>
+   </div>

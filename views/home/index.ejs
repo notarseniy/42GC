@@ -12,7 +12,7 @@
           prompt: '<%= i18n('Я только прошу тебя ввести правильный URL') %>'
         },
         {
-          type: 'contains ['http://42gc.ru']',
+          type: 'contains [\'http://42gc.ru\']',
           promt: '<%= i18n('Прости, но использовать этот адрес нельзя') %>'
         }
       ]
@@ -48,6 +48,7 @@ $('.ui.dropdown')
     <button type="submit" class="ui submit purple button"><%= i18n('Сократить') %></button>
   </div>
 </form>
+<p>У нас уже <%= stats.links %> ссылок и <%= stats.visitors %> <span title="*по всем ссылкам">переходов по ним</span>!</p>
 <% if (typeof message !== 'undefined' && message.length > 0) { %>
   <div class="ui error message loginerr">
     <div class="header"><%= message %></div>

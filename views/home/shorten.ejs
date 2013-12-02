@@ -2,27 +2,31 @@
   <%= __('Получайте вашу ссылочку!') %></h1>
 
   <div class="ui grid center">
-    <div class="three wide column" style="text-align:right !important"><%= __('Оригинальный URL') %></div>
-    <div class="three column">—</div>
-    <div class="three wide column" style="text-align: left !important"><a href="<%= originalURL %>" class="link"><%= originalURL %></a></div>
+   <div class="three wide column" style="text-align:right !important"><%= __('Оригинальный URL') %></div>
+   <div class="three column mdash">—</div>
+   <div class="three wide column" style="text-align: left !important">
+      <div class="ui input">
+         <input class="origurl" value="<%= originalURL %>" type="text">
+      </div>
+   </div>
   </div>
-  
+
   <div class="ui grid center">
     <div class="three wide column" style="text-align:right !important"><%= __('Сокращённый URL') %></div>
-    <div class="three column">—</div>
-    <div class="three wide column" style="text-align: left !important"><a href="http://42gc.ru/<%= shortURL %>" class="link"><%= shortURL %></a></div>
+    <div class="three column mdash">—</div>
+    <div class="three wide column" style="text-align: left !important"><a href="/<%= shortURL %>" class="link"><%= shortURL %></a></div>
   </div>
-  
+
   <div class="ui grid center">
     <div class="three wide column" style="text-align:right !important"><%= __('Информация о ссылке') %></div>
-    <div class="three column">—</div>
-    <div class="three wide column" style="text-align: left !important"><a href="http://42gc.ru/i/<%= shortURL %>" class="link">/i/<%= shortURL %></a></div>
+    <div class="three column mdash">—</div>
+    <div class="three wide column" style="text-align: left !important"><a href="/i/<%= shortURL %>" class="link">/i/<%= shortURL %></a></div>
   </div>
 
   <div class="ui grid center">
     <div class="three wide column" style="text-align:right !important"><%= __('Ссылка для удаления') %></div>
-    <div class="three column">—</div>
-    <div class="three wide column" style="text-align: left !important"><a href="http://42gc.ru/d/<%= delink %>" class="link">/d/<%= delink %></a></div>
+    <div class="three column mdash">—</div>
+    <div class="three wide column" style="text-align: left !important"><a href="/d/<%= delink %>" class="link">/d/<%= delink %></a></div>
   </div>
 
   <br>

@@ -7,12 +7,23 @@
 		<meta property="og:title" content="<%- title %>" />
 		<meta property="og:type" content="website" />
 		<meta property="og:image" content="/images/logo.png">
-		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 		<link href="/styles/sem.css" type="text/css" rel="stylesheet" />
 		<link href="/styles/main.css" type="text/css" rel="stylesheet" />
 		<script type="text/javascript" src="/js/jquery.js"></script>
 		<script type="text/javascript" src="/js/sem.js"></script>
 		<script type="text/javascript" src="/js/angular.js"></script>
+		<script>
+		$(document).ready(function(){
+			$('.menubutton').popup({
+				 on: 'click',
+				 html: '<div class="ui link list"><a class="item" href="//42gc.ru">Сокращалка</a><span class="item">Список GC сервисов</span><div class="ui fitted divider"></div><a class="item" href="//kern0.ru">Kern0</a><a class="item" href="//42gc.ru/about">О Проекте</a></div>',
+				 position: 'top left',
+				 variation: 'inverted'
+			  });
+		});
+		</script>
 	</head>
 	<body>
 		<!--<p class="pull-left"><a href="/ru" class="link">Русский</a> &#149; <a href="/en" class="link">English</a></p>-->
@@ -21,19 +32,8 @@
 			<div class="content">
 			<%- body %>
 			</div>
-			<div class="push"></div>
 		</div>
-		<div class="footer">
-		<% isStats = typeof(stats) %>
-		<% if (isStats !== 'undefined') { %>
-			<ul class="links">
-				<li>У нас уже <%= stats.links %> ссылок и <%= stats.visitors %> <span title="*по всем ссылкам">переходов по ним</span>!</li>
-			</ul>
-		<% } %>
-			<ul class="links right">
-				<li><a href="//github.com/Kern0/42GC" class="link">Github</a></li>
-				<li>&bull; <a class="link" href="//kern0.ru">Kern0</a></li>
-			</ul>
+		<div class="menubutton">
 		</div>
 	</body>
 </html>
