@@ -49,7 +49,12 @@ module.exports = {
    shorten: function shorten(req,res){
       res.etagify();
 
-      if (!req.body.url) return res.view('home/index',{message: 'Введите URL!'});
+      if (!req.body.url) {
+	 getStats(function(err, result) {
+	    if (err) throw err;
+	    return res.view('home/index',{message: 'Введите URL!', stats: result});
+	 });
+      }
       shorten.url = req.body.url;//Original URL
 
       if (!req.body.name) {// Short URL
@@ -64,7 +69,10 @@ module.exports = {
 	 if (err) throw err;
 
 	 if (link) {
-	    return res.view('home/index',{message: 'Увы, но этот короткий адрес уже занят'});
+	    getStats(function(err, result) {
+	       if (err) throw err;
+	       return res.view('home/index',{message: 'Увы, но этот короткий адрес уже занят', stats: result});
+	    });
 	 }
       });
 
