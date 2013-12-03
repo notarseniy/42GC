@@ -63,31 +63,47 @@ module.exports = {
 	 shorten.sUrl = req.body.name.replace(/[^a-zA-Z0-9-_]/g, '');
       }
 
-      link.findOne({
-	 shortURL: shorten.sUrl
-      }).done(function(err, link) {
-	 if (err) throw err;
+      async.waterfall([
+	 function isExists(callback) {
+	    link.findOne({
+	       shortURL: shorten.sUrl
+	    }).done(function(err, link) {
+	       if (err) callback(err);
 
-	 if (link) {
-	    getStats(function(err, result) {
-	       if (err) throw err;
-	       return res.view('home/index',{message: 'Увы, но этот короткий адрес уже занят', stats: result});
+	       if (link) {
+		  callback({msg: 'Увы, но этот короткий адрес уже занят', show: true});
+	       } else {
+		  callback(null);
+	       }
 	    });
+	 },
+	 function createLink(callback) {
+	    shorten.delink = crypto.createHash('sha1').update(shorten.sUrl + rand.generateKey(8)).digest('hex');
+
+	    link.create({
+	       originalURL: shorten.url,
+	       shortURL: shorten.sUrl,
+	       visitors: '0',
+	       delink: shorten.delink
+	    }).done(function(err, link) {
+	       if (err) callback(err);
+
+	       callback(null, {originalURL: shorten.url, shortURL: shorten.sUrl, delink: shorten.delink});
+	    });
+	 }],
+	 function(err, result) {
+	    if (err) {
+	       if (err.show) {
+		  return res.view('home/index', {message: err.msg});
+	       } else {
+		  throw err;
+		  return;
+	       }
+	    }
+
+	    res.view('home/shorten',result);
 	 }
-      });
-
-       shorten.delink = crypto.createHash('sha1').update(shorten.sUrl + rand.generateKey(8)).digest('hex');
-
-       link.create({
-	     originalURL: shorten.url,
-	     shortURL: shorten.sUrl,
-	     visitors: '0',
-	     delink: shorten.delink
-	 }).done(function(err, link) {
-	    if (err) throw err;
-
-	    res.view({originalURL: shorten.url, shortURL: shorten.sUrl, delink: shorten.delink});
-      });
+      );
    },
 
    shorted: function(req,res) {
