@@ -1,31 +1,3 @@
-<script>$(document).ready(function() {$('.ui.form')
-  .form({
-    url: {
-      identifier  : 'url',
-      rules: [
-        {
-          type   : 'empty',
-          prompt : '<%= i18n('Введите какой нибудь URL') %>'
-        },
-        {
-          type: 'not[url]',
-          prompt: '<%= i18n('Я только прошу тебя ввести правильный URL') %>'
-        },
-        {
-          type: 'contains [\'http://42gc.ru\']',
-          promt: '<%= i18n('Прости, но использовать этот адрес нельзя') %>'
-        }
-      ]
-    }
-  })
-;
-$('.ui.dropdown')
-    .form(validationRules, {
-      inline : true,
-      on: 'blur'
-    })
-;});</script>
-
 <h1>42GC<br>
 <%= i18n('Простая сокращалка ссылок') %></h1>
 <form action="/shorten" method="post">
@@ -39,7 +11,7 @@ $('.ui.dropdown')
       </div>
     </div>
     <div class="field">
-      <label style="text-align: left"><%= i18n('Имя новой ссылки') %><i>(<%= i18n('необязательно)') %></i></label>
+      <label style="text-align: left"><%= i18n('Имя новой ссылки') %><i>(<%= i18n('необязательно') %></i></label>
       <div class="ui left labeled icon input">
         <input placeholder="gcsite" type="text" name="name">
         <i class="url icon"></i>

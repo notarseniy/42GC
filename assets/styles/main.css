@@ -15,6 +15,12 @@ a {
   text-decoration: none;
 }
 
+.disclaimer {
+   position: fixed;
+   right: 20px;
+   bottom: 20px;
+}
+
 .menubutton {
    cursor: pointer;
    background: url(/images/logo.png) repeat scroll 0% 0% #222224;
