@@ -1,7 +1,7 @@
 // local.js example
 
 module.exports = {
-	appName: "42GC",
+	appName: "4GC",
 
 	port: process.env.PORT || 1337,
 
