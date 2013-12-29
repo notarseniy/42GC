@@ -4,7 +4,7 @@
   "version": "0.3.0",
   "description": "URL shorter written on Sails.js",
   "dependencies": {
-    "sails": "0.9.4",
+    "sails": "0.9.8",
     "grunt": "0.4.x",
     "sails-disk": "0.9.x",
     "sails-mysql": "0.9.x",
