@@ -15,6 +15,15 @@ a {
   text-decoration: none;
 }
 
+.lastblog {
+	position: fixed;
+	right: 30%;
+	left: 30%;
+	top: 0px;
+	background-color: rgb(91, 171, 167);
+	padding: 20px 0px;
+}
+
 .disclaimer {
    position: fixed;
    right: 20px;
