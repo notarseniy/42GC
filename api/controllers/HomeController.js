@@ -157,16 +157,18 @@ module.exports = {
 	 },
 
 	 delink: function delink(req,res) {
-			if (req.param('confirm') === 'yeas') {
-	 link.destroy(function(err) {
-			if (err) {
-				 throw err;
-			}
-	 });
-	 res.json({code: 204});
-			} else {
-	 res.redirect('/');
-			}
+		if (req.param('confirm') === 'yeas') {
+			Link.find({delink: req.param('delink')}).done(function (err, shorten) {
+				shorten[0].destroy(function(err) {
+					if (err) {
+						throw err;
+					}
+					res.json({code: 204});
+				});
+			});
+		} else {
+			res.redirect('/');
+		}
 	 },
 
 	 favicon: function(req,res) {
