@@ -158,7 +158,7 @@ module.exports = {
 
 	 delink: function delink(req,res) {
 		if (req.param('confirm') === 'yeas') {
-			Link.find({delink: req.param('delink')}).done(function (err, shorten) {
+			link.find({delink: req.param('delink')}).done(function (err, shorten) {
 				shorten[0].destroy(function(err) {
 					if (err) {
 						throw err;
