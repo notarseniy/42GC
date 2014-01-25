@@ -7,6 +7,8 @@
 var rand = require('generate-key');
 var crypto = require('crypto');
 var path = require('path');
+var url = require('url');
+
 
 function getStats(cb) {
 	async.waterfall([
@@ -38,20 +40,18 @@ function getStats(cb) {
 
 module.exports = {
 
-	 index: function(req,res){
-		res.etagify();
+	index: function(req,res){
 		getStats(function(err, result) {
 			if (err) throw err;
 
 			res.view({stats: result});
 		});
-	 },
+	},
 
-	 shorten: function shorten(req,res){
-		res.etagify();
-
+	shorten: function shorten(req,res){
 		shorten.url = req.body.url;//Original URL
-
+		shorten.parsedUrl = url.parse(shorten.url);
+		
 		if (!req.body.name) {// Short URL
 			shorten.sUrl = rand.generateKey(4);
 		} else {
@@ -59,56 +59,65 @@ module.exports = {
 		}
 
 		async.waterfall([
-			function isExists(callback) {
+			function checkUrl(callback) {
 				if (!shorten.url) {
-					return callback({msg: 'Введите URL!', show: true});
+					return callback({msg: 'Введите URL!'});
 				}
+				
+				if (shorten.parsedUrl.protocol === null) {
+					shorten.url = 'http://' + shorten.url;
+				}
+				
 				link.findOne({
 					shortURL: shorten.sUrl
 				}).done(function(err, link) {
 					if (err) return callback(err);
 
 					if (link) {
-						callback({msg: 'Увы, но этот короткий адрес уже занят', show: true});
+						callback({msg: 'Увы, но этот короткий адрес уже занят'});
 					} else {
 						callback(null);
 					}
 				});
-			 },
-			 function createLink(callback) {
-					shorten.delink = crypto.createHash('sha1').update(shorten.sUrl + rand.generateKey(8)).digest('hex');
-
-					link.create({
-						originalURL: shorten.url,
-						shortURL: shorten.sUrl,
-						visitors: '0',
-						delink: shorten.delink
-					}).done(function(err, link) {
-						if (err) return callback(err);
-
-						callback(null, {originalURL: shorten.url, shortURL: shorten.sUrl, delink: shorten.delink});
-					});
-			 }],
-			 function(err, result) {
+			},
+			function createLink(callback) {
+				shorten.delink = crypto.createHash('sha1').update(shorten.sUrl + rand.generateKey(8)).digest('hex');
+				
+				link.create({
+					originalURL: shorten.url,
+					shortURL: shorten.sUrl,
+					visitors: '0',
+					delink: shorten.delink
+				}).done(function(err, link) {
 					if (err) {
-						 if (err.show) {
+							if (err.ValidationError.originalURL) {
+								return callback({msg: 'Введите правильный URL!'});
+							} else {
+								return callback(err);
+							}
+						}
+
+					callback(null, {originalURL: shorten.url, shortURL: shorten.sUrl, delink: shorten.delink});
+				});
+			}],
+			function(err, result) {
+					if (err) {
+						if (err.msg) {
 							return res.view('home/index', {message: err.msg});
-						 } else {
+						} else {
+							console.log(err);
 							throw err;
-							return;
-						 }
+						}
 					}
 
 					res.view('home/shorten',result);
-			 }
+			}
 		);
-	 },
+	},
 
-	 shorted: function(req,res) {
+	shorted: function(req,res) {
 		if (req.url == '/') return res.redirect('/');
-
-		res.etagify();
-
+		
 		link.findOne({
 			shortURL: req.param('shortURL')
 		}).done(function(err, link) {
@@ -124,13 +133,11 @@ module.exports = {
 				res.redirect(link.originalURL);
 			}
 		});
-	 },
+	},
 
-	 info: function(req,res) {
+	info: function(req,res) {
 		if (req.url == '/') return res.redirect('/');
-
-		res.etagify();
-
+		
 		link.findOne({
 			shortURL: req.param('shortURL')
 		}).done(function(err, link) {
@@ -142,45 +149,41 @@ module.exports = {
 				res.view({originalURL: link.originalURL, shortURL: link.shortURL, createdAt: link.createdAt, visitors: link.visitors});
 			}
 		});
-	 },
+	},
 
-	 delinkTpl: function delinkTpl(req,res) {
-	 res.etagify();
-	 link.findOne({
-			delink: req.param('delink')
-	 }).done(function(err, link) {
-			if (err) throw err;
-			if (!_.isObject(link)) return res.redirect('/');
+	delinkTpl: function delinkTpl(req,res) {
+		link.findOne({
+				delink: req.param('delink')
+		}).done(function(err, link) {
+				if (err) throw err;
+				if (!_.isObject(link)) return res.redirect('/');
+				
+				res.view('home/delink',{shortURL: link.shortURL, delink: link.delink});
+		});
+	},
 
-			res.view('home/delink',{shortURL: link.shortURL, delink: link.delink});
-	 });
-	 },
-
-	 delink: function delink(req,res) {
+	delink: function delink(req,res) {
 		if (req.param('confirm') === 'yeas') {
 			link.find({delink: req.param('delink')}).done(function (err, shorten) {
 				shorten[0].destroy(function(err) {
-					if (err) {
-						throw err;
-					}
-					res.json({code: 204});
+					if (err) throw err;
+					res.json({code: 200});
 				});
 			});
 		} else {
 			res.redirect('/');
 		}
-	 },
+	},
 
-	 favicon: function(req,res) {
-			res.sendfile('assets/favicon.ico');
-	 },
+	favicon: function(req,res) {
+		res.sendfile('assets/favicon.ico');
+	},
 
-	 robots: function(req,res) {
-			res.sendfile('assets/robots.txt');
-	 },
+	robots: function(req,res) {
+		res.sendfile('assets/robots.txt');
+	},
 
-	 about: function(req,res) {
-			res.etagify();
-			res.view('home/about');
-	 }
+	about: function(req,res) {
+		res.view('home/about');
+	}
 };

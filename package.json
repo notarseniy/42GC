@@ -1,7 +1,7 @@
 {
   "name": "42gc",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.4.2",
   "description": "URL shorter written on Sails.js",
   "dependencies": {
     "sails": "0.9.8",
@@ -12,9 +12,7 @@
     "optimist": "0.3.x",
     "generate-key": "0.0.x",
     "connect-redis": "1.4.x",
-    "etagify": "0.0.x",
-    "step": "0.0.5",
-    "i18n": "0.4.x"
+    "validator": "3.2.0"
   },
   "scripts": {
     "start": "forever start app.js -l logs/app.log",

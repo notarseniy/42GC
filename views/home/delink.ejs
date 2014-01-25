@@ -10,7 +10,7 @@ $(document).ready(function(){
          data: $('#form').serialize(),
          success: function(data) {
             console.log(data);
-            if (data.code === 204) {
+            if (data.code === 200) {
                $('#content').html('<h1>Ссылка успешно удалена!</h1><a href="/" class="ui green small button">На главную</a>').fadeIn(300);
             }
          }

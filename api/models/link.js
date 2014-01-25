@@ -11,7 +11,7 @@ module.exports = {
   attributes: {
     // 'http://greencubes.org'
     originalURL: {
-      type: 'string',
+      type: 'url',
       required: true
     },
     // 'vFDh42'
