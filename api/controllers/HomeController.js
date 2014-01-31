@@ -49,24 +49,28 @@ module.exports = {
 	},
 
 	shorten: function shorten(req,res){
-		shorten.url = req.body.url;//Original URL
+		//Original URL
+		shorten.url = req.body.url;
 		shorten.parsedUrl = url.parse(shorten.url);
 		
-		if (!req.body.name) {// Short URL
+		// Short URL
+		if (!req.body.name)
 			shorten.sUrl = rand.generateKey(4);
-		} else {
+		else
 			shorten.sUrl = req.body.name.replace(/[^a-zA-Z0-9-_]/g, '');
-		}
-
+		
 		async.waterfall([
 			function checkUrl(callback) {
-				if (!shorten.url) {
+				if (!shorten.url)
 					return callback({msg: 'Введите URL!'});
-				}
 				
 				if (shorten.parsedUrl.protocol === null) {
 					shorten.url = 'http://' + shorten.url;
+					shorten.parsedUrl = url.parse(shorten.url);
 				}
+				
+				if (shorten.parsedUrl.hostname === '42gc.ru' || shorten.parsedUrl.hostname === '4gc.me')
+					return callback({msg: 'Сокращать ссылки 42GC нет смысла'});
 				
 				link.findOne({
 					shortURL: shorten.sUrl
