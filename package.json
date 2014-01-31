@@ -1,7 +1,7 @@
 {
   "name": "42gc",
   "private": true,
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "URL shorter written on Sails.js",
   "dependencies": {
     "sails": "0.9.8",

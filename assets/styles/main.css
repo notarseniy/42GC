@@ -24,6 +24,11 @@ a {
 	padding: 20px 0px;
 }
 
+.oldblog {
+	position: fixed;
+	left: 31%;
+}
+
 .disclaimer {
    position: fixed;
    right: 20px;
