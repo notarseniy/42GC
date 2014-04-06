@@ -9,17 +9,16 @@
  */
 
 module.exports.routes = {
-   '/robots.txt': 'home.robots',
-   '/favicon.ico': 'home.favicon',
-
+	
    '/': 'home.index',
    '/about': 'home.about',
+	
    'post /shorten': 'home.shorten',
    '/:shortURL': 'home.shorted',
+	
    '/i/:shortURL': 'home.info',
    '/info/:shortURL': 'home.info',
+	
    'get /d/:delink': 'home.delinkTpl',
-   'post /d/:delink': 'home.delink'/*,
-   '/ru': 'lang.ru',
-   '/en': 'lang.en'*/
+   'post /d/:delink': 'home.delink'
 };

@@ -10,5 +10,6 @@
 
 module.exports.bootstrap = function (cb) {
 
-  cb();
+	global.cfg = require('./local.js');
+	cb();
 };

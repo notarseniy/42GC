@@ -24,5 +24,10 @@ module.exports = {
 		db: 0, //change this if other db
 		pass:'<redis auth password>',
 		prefix: 'sess:'
+	},
+	
+	lastblog: {
+		url: 'http://kern0.co/lolzcats',
+		text: 'greencabis rulez the world'
 	}
 };
