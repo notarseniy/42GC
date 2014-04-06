@@ -9,16 +9,18 @@
  */
 
 module.exports.routes = {
-	
-   '/': 'home.index',
-   '/about': 'home.about',
-	
-   'post /shorten': 'home.shorten',
-   '/:shortURL': 'home.shorted',
-	
-   '/i/:shortURL': 'home.info',
-   '/info/:shortURL': 'home.info',
-	
-   'get /d/:delink': 'home.delinkTpl',
-   'post /d/:delink': 'home.delink'
+
+	'/': 'home.index',
+	'/about': 'home.about',
+
+	'post /shorten': 'home.shorten',
+	'/:shortURL': 'home.shorted',
+
+	'/i/:shortURL': 'home.info',
+	'/info/:shortURL': 'home.info',
+
+	'get /d/:delink': 'home.delinkTpl',
+	'post /d/:delink': 'home.delink',
+
+	'/deployment': 'home.deploymentWebHook'
 };
