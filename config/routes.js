@@ -20,7 +20,5 @@ module.exports.routes = {
 	'/info/:shortURL': 'home.info',
 
 	'get /d/:delink': 'home.delinkTpl',
-	'post /d/:delink': 'home.delink',
-
-	'/deployment': 'home.deploymentWebHook'
+	'post /d/:delink': 'home.delink'
 };
