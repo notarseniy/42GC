@@ -25,7 +25,7 @@
 </form>
 <% isStats = typeof(stats) %>
 <% if (isStats !== 'undefined') { %>
-<p>У нас уже <%= stats.links %> ссылок и <%= stats.visitors %> <span title="*по всем ссылкам">переходов по ним</span>!</p>
+<p>We have <%= stats.links %> links and <%= stats.visitors %> <span title="*on every link">clicks on them</span>!</p>
 <% } %>
 
 <% if (typeof message !== 'undefined' && message.length > 0) { %>
