@@ -12,8 +12,8 @@
 module.exports.i18n = {
 
   // Which locales are supported?
-  locales: ['en', 'ru'],
-  defaultLocale: 'en',
+  locales: ['ru'],
+  defaultLocale: 'ru',
   updateFiles: false,
   extension: '.json'
 };
