@@ -67,26 +67,34 @@ module.exports = {
 		if (!req.body.name) {
 			shorten.sUrl = rand.generateKey(4);
 		} else {
-			shorten.sUrl = req.body.name.replace(/[^a-zA-Z0-9-_]/g, '');
+			shorten.sUrl = req.body.name;
 		}
 
 		async.waterfall([
-
 			function checkUrl(callback) {
-					if (!shorten.url)
+					if (!shorten.url) {
 						return callback({
 							msg: 'Введите URL!'
 						});
+					}
 
 					if (shorten.parsedUrl.protocol === null) {
 						shorten.url = 'http://' + shorten.url;
 						shorten.parsedUrl = url.parse(shorten.url);
 					}
 
-					if (shorten.parsedUrl.hostname === '42gc.ru' || shorten.parsedUrl.hostname === '4gc.me')
+					if (shorten.parsedUrl.hostname === '42gc.ru' || shorten.parsedUrl.hostname === '4gc.me') {
 						return callback({
 							msg: 'Сокращать ссылки 42GC нет смысла'
 						});
+					}
+
+					console.log(shorten.sUrl, shorten.sUrl.replace(/[^a-zA-Z0-9_-]/g, ''));
+					if (shorten.sUrl !== shorten.sUrl.replace(/[^a-zA-Z0-9_-]/g, '') || !shorten.sUrl) {
+						return callback({
+							msg: 'В названии короткого адреса разрешены только буквы, цифры и символы: _ -'
+						});
+					}
 
 					link.findOne({
 						shortURL: shorten.sUrl
@@ -111,7 +119,8 @@ module.exports = {
 						originalURL: shorten.url,
 						shortURL: shorten.sUrl,
 						visitors: 0,
-						delink: shorten.delink
+						delink: shorten.delink,
+						owner: (req.user) ? req.user.id : 0
 					}).done(function (err, link) {
 						if (err) {
 							if (err.ValidationError.originalURL) {
@@ -129,8 +138,8 @@ module.exports = {
 							delink: shorten.delink
 						});
 					});
-			}],
-			function (err, result) {
+			}
+		], function (err, result) {
 				if (err) {
 					if (err.msg) {
 						return res.view('home/index', {

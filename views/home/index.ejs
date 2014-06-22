@@ -1,35 +1,33 @@
-<% if (cfg.lastblog) { %>
-<div class="lastblog"><a href="http://kern0.co/42gc/" class="oldblog" title="Старые посты в блоге" target="_blank">&larr;</a><a href="<%= cfg.lastblog.url %>"><%= cfg.lastblog.text %></a></div>
-<% } %>
-<h1>42GC<br>
-<%= i18n('Простая сокращалка ссылок') %></h1>
-<form action="/shorten" method="post">
-  <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-  <div class="ui form" style="display: inline-block !important">
-    <div class="field">
-      <label style="text-align: left"><%= i18n('Ссылка для сокращения') %></label>
-      <div class="ui left labeled icon input">
-        <input placeholder="http://greencubes.org" type="text" name="url">
-        <i class="url icon"></i>
-      </div>
-    </div>
-    <div class="field">
-      <label style="text-align: left"><%= i18n('Имя новой ссылки') %><i>(<%= i18n('необязательно') %>)</i></label>
-      <div class="ui left labeled icon input">
-        <input placeholder="gcsite" type="text" name="name">
-        <i class="url icon"></i>
-      </div>
-    </div>
-    <button type="submit" class="ui submit purple button"><%= i18n('Сократить') %></button>
-  </div>
-</form>
+<div class="postform">
+	<form action="/shorten" method="post">
+	  <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+	  <div class="ui form">
+		<div class="field">
+		  <label style="text-align: left">
+			  <%= i18n('Ссылка для сокращения') %></label>
+		  <div class="ui left labeled icon input">
+			<input placeholder="http://greencubes.org" type="text" name="url">
+			<i class="url icon"></i>
+		  </div>
+		</div>
+		<div class="field">
+		  <label style="text-align: left">
+			  <%= i18n('Имя новой ссылки') %> <i>(<%= i18n('необязательно') %>)</i></label>
+		  <div class="ui left labeled icon input">
+			<input placeholder="hotchangedbabes" type="text" name="name">
+			<i class="url icon"></i>
+		  </div>
+		</div>
+		<button type="submit" class="ui submit green button"><%= i18n('Сократить') %></button>
+	  </div>
+	</form>
+	<% if (typeof message !== 'undefined' && message.length > 0) { %>
+	  <div class="ui error message loginerr">
+		<div class="header"><%= message %></div>
+	  </div>
+	<% } %>
+</div>
 <% isStats = typeof(stats) %>
 <% if (isStats !== 'undefined') { %>
 <p>У нас уже <%= stats.links %> ссылок и <%= stats.visitors %> <span title="*по всем ссылкам">переходов по ним</span>!</p>
-<% } %>
-
-<% if (typeof message !== 'undefined' && message.length > 0) { %>
-  <div class="ui error message loginerr">
-    <div class="header"><%= message %></div>
-  </div>
 <% } %>

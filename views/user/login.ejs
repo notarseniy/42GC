@@ -1,0 +1,30 @@
+<% title = "Вход в аккаунт — 42GC" %>
+<div class="postform">
+	<form id="loginform" action="/login" method="POST">
+		<div class="ui form" style="display: inline-block !important">
+			<div class="field">
+				<div class="ui left labeled icon input">
+					<input placeholder="Имя пользователя" type="text" name="username">
+					<i class="user icon"></i>
+				</div>
+			</div>
+			<div class="field">
+				<div class="ui left labeled icon input">
+					<input placeholder="Пароль" type="password" name="password">
+					<i class="lock icon"></i>
+				</div>
+			</div>
+			<button type="submit" class="ui blue submit button">Войти</button>
+		</div>
+		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+	</form>
+	<div id="loginerr"><% if (typeof message !== 'undefined') { %>
+			<div class="ui error message">
+				<div class="header"><%= message %></div>
+			</div><% } %>
+	</div>
+</div>
+<% isStats = typeof(stats) %>
+<% if (isStats !== 'undefined') { %>
+<p>У нас уже <%= stats.links %> ссылок и <%= stats.visitors %> <span title="*по всем ссылкам">переходов по ним</span>!</p>
+<% } %>

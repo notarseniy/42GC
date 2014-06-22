@@ -27,7 +27,10 @@ module.exports = {
     //'1b7b889153edbfb7f70d9da23d64b574b34411aa'
     delink: {
       type: 'string'
-    }
+    },
+	owner: {
+		type: 'integer'
+	}
   }
 
 };

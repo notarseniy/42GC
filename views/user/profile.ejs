@@ -1,0 +1,19 @@
+ <h1><%= i18n('Список ссылок') %> <%= req.user.username %></h1>
+
+	<% if (links.length) { %>
+		<ol>
+		<% links.forEach(function (link) { %>
+			<li>
+				<a href="/<%= link.shortURL %>"><%= link.shortURL %></a>&nbsp;<a href="/d/<%= link.delink %>" title="На страницу удаления ссылки">[x]</a>
+			</li>
+		<% }) %>
+		</ol>
+	<% } else { %>
+		<div style="padding:2em 0em;">Ссылок нет! Самое время для первой ссылки?</div>
+	<% } %>
+
+
+<br>
+<a href="/" class="ui green small button">
+	<%=i18n( 'На главную?') %>
+</a>

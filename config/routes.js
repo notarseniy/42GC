@@ -11,6 +11,13 @@
 module.exports.routes = {
 
 	'/': 'home.index',
+
+	'/profile': 'user.profile',
+
+	'/login': 'user.login',
+	'/oauth/callback': 'user.callback',
+	'/logout': 'user.logout',
+
 	'/about': 'home.about',
 
 	'post /shorten': 'home.shorten',

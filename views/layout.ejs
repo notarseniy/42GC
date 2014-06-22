@@ -14,23 +14,34 @@
 	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 	<link href="/styles/sem.css" type="text/css" rel="stylesheet" />
 	<link href="/styles/main.css" type="text/css" rel="stylesheet" />
+	<link href="/styles/fonts.css" type="text/css" rel="stylesheet" />
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/sem.js"></script>
-	<script type="text/javascript" src="/js/menu.js"></script>
 </head>
 
 <body>
 	<div class="wrapper">
-		<div class="pixel"></div>
+		<!--div class="pixel"></div-->
+		<div class="logo">
+			<a class="logotype center" href="/"></a>
+		</div>
+		<div class="login">
+			<% if (req.user) { %>Привет, <a href="/profile"><%= req.user.username %></a> (<a href="/logout">выйти</a>)<% } else { %><a class="ui basic inverted small button" href="/login"><i class="sign in white icon"></i>Войти</a><% } %>
+		</div>
 		<div class="content">
 			<%- body %>
 		</div>
 	</div>
-	<div class="menubutton"></div>
-	<p class="disclaimer">
-		<a href="http://github.com/Kern0/42GC">GitHub</a>
-		&bull; <a href="http://kern0.ru">Kern0 &copy;</a>
-	</p>
+	<div class="footer">
+		<ul class="links">
+			<li><a class="link" href="//greencubes.org"><i class="heart white icon"></i> GreenCubes</a></li>
+		</ul>
+		<ul class="links right">
+			<li><a class="link" href="http://github.com/Kern0/42GC"><i class="github white icon"></i></a></li>
+			<li>&bull; <a class="link" href="http://kern0.co/42gc-rules/">Правила</a></li>
+			<li>&bull; <a class="link" href="http://kern0.ru">Kern0 &copy;</a></li>
+		</ul>
+	</div>
 	<%- partial('partials/analytics') %>
 </body>
 

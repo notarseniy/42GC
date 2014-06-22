@@ -1,13 +1,16 @@
 body {
-  font-family: "PT Sans",Helvetica,Arial,sans-serif;
+  font-family: "Clear Sans", Helvetica, sans-serif;
   color: #ffffff;
   font-weight: 800;
-  background-color: rgb(125, 188, 185);
+  background-color: #222224;
   margin: 0px;
 }
 
 html, body {
 	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	min-width: 480px;
 }
 
 a {
@@ -15,12 +18,18 @@ a {
   text-decoration: none;
 }
 
-.lastblog {
+.logo {
 	position: fixed;
 	right: 30%;
 	left: 30%;
 	top: 0px;
-	background-color: rgb(91, 171, 167);
+	padding: 20px 0px;
+}
+
+.login {
+	position: fixed;
+	right: 1em;
+	top: 0px;
 	padding: 20px 0px;
 }
 
@@ -29,20 +38,43 @@ a {
 	left: 31%;
 }
 
-.disclaimer {
-   position: fixed;
-   right: 20px;
-   bottom: 15px;
+.postform {
+	display: inline-block;
+	width: auto;
+	min-width: 16em;
+	max-width: 25em;
 }
 
-.menubutton {
-   cursor: pointer;
-   background: url(/images/logo.png) repeat scroll 0% 0% #222224;
-   position: fixed;
-   left: 20px;
-   bottom: 20px;
-   width: 32px;
-   height: 32px;
+.push,
+.footer {
+	height: 61px;
+}
+
+.footer {
+	line-height: 1.5;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 0px;
+	border: 0px none;
+	margin: 0px auto;
+	position: relative;
+	padding: 0px;
+	border: 0px none;
+}
+
+.links {
+	padding: 0em 0em 0em 1em;
+	float: left;
+	list-style: none outside none;
+	margin: 18px 15px 0px 0px;
+}
+
+.links.right {
+	float: right;
+}
+
+.footer li {
+	display: inline-block;
 }
 
 .ui.top.right.popup {
@@ -58,13 +90,14 @@ a.item, span.item {
    font-weight: bold;
 }
 
-.pixel {
-	height: 8px;
-	background-color: rgb(91, 171, 167);
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	left: 0px;
+.logotype {
+	background: url('/images/biglogo.png') repeat scroll 0% 0% transparent;
+	width: 128px;
+	height: 64px;
+}
+
+.white.icon {
+	color: #fff;
 }
 .wrapper {
 	min-height: 100%;
@@ -108,7 +141,8 @@ a.item, span.item {
 }
 
 .content {
-   padding: 10em 5em 0em;
+	padding: 15% 2em 0em;
+	height: 100%;
 }
 
 .ui.form .field > label {
@@ -144,4 +178,8 @@ input.origurl {
 .three.column.mdash {
    padding: 0px;
    width: 10px;
+}
+
+.ui.button {
+	font-family: inherit;
 }
