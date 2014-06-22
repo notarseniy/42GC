@@ -89,7 +89,6 @@ module.exports = {
 						});
 					}
 
-					console.log(shorten.sUrl, shorten.sUrl.replace(/[^a-zA-Z0-9_-]/g, ''));
 					if (shorten.sUrl !== shorten.sUrl.replace(/[^a-zA-Z0-9_-]/g, '') || !shorten.sUrl) {
 						return callback({
 							msg: 'В названии короткого адреса разрешены только буквы, цифры и символы: _ -'
