@@ -1,7 +1,7 @@
  <h1><%= i18n('Список ссылок') %> <%= req.user.username %></h1>
 
 	<% if (links.length) { %>
-		<ol>
+		<ol style="display:inline-block;">
 		<% links.forEach(function (link) { %>
 			<li>
 				<a href="/<%= link.shortURL %>"><%= link.shortURL %></a>&nbsp;<a href="/d/<%= link.delink %>" title="На страницу удаления ссылки">[x]</a>
